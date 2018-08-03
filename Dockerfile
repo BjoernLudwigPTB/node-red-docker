@@ -15,7 +15,7 @@ WORKDIR /opt/node-red
 
 # Add user not to run application as root
 
-RUN useradd --home-dir /usr/src/node-red --no-create-home node-red \
+RUN useradd --home-dir /opt/node-red --no-create-home node-red \
     && chown -R node-red:node-red /opt/node-red \
     && chown -R node-red:node-red /data
 	
