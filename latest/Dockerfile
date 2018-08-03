@@ -33,14 +33,14 @@ RUN npm install
 WORKDIR /data
 
 RUN sed -i "s_//httpRoot:.*_httpRoot: '\node-red'_g" settings.js
-RUN sed -i 's_\(.*\)//adminAuth:.*_\1adminAuth: require('node-red-auth-github')({\n
-    clientID: GITHUB_CLIENT_ID,\n
-    clientSecret: GITHUB_CLIENT_SECRET,\n
-    baseURL: "https://pstwiki.bs.ptb.de/node-red",\n
-    users: [
-       { username: "BjoernLudwigPTB",permissions: ["*"]}\n
-    ]\n
-})\n
+RUN sed -i 's_\(.*\)//adminAuth:.*_\1adminAuth: require('node-red-auth-github')({\n \
+    clientID: GITHUB_CLIENT_ID,\n \
+    clientSecret: GITHUB_CLIENT_SECRET,\n \
+    baseURL: "https://pstwiki.bs.ptb.de/node-red",\n \
+    users: [\n \
+       { username: "BjoernLudwigPTB",permissions: ["*"]}\n \
+    ]\n \
+})\n \
 //delete this and the following seven lines_g' settings.js
 
 RUN sed -i -e '/\/\/delete this and the following seven lines/,+7d' settings.js
