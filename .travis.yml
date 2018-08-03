@@ -22,8 +22,8 @@ script:
   - docker run -d bludoc/node-red:v8
   - docker ps | grep v8
 
-after_success:
-  - if [ "$TRAVIS_BRANCH" == "node-red" -a "$TRAVIS_PULL_REQUEST" == "false" ]; then
-    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-    docker push bludoc/node-red;
-    fi
+notifications:
+  webhooks:
+    urls:
+      - https://registry.hub.docker.com/u/bludoc/node-red/trigger/28b59a8e-b0a4-46ca-9f6f-64ce787fa813/
+    on_success: always
