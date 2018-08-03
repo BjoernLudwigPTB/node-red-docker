@@ -1,6 +1,6 @@
 # This file was changed for customization purposes. Specifically paths are
-changed slightly to match common naming and to support habbits in contexts
-where this version is supposed to be used.
+# changed slightly to match common naming and to support habbits in contexts
+# where this version is supposed to be used.
 
 ARG NODE_VERSION=6
 FROM node:${NODE_VERSION}

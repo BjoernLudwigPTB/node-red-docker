@@ -25,5 +25,5 @@ script:
 after_success:
   - if [ "$TRAVIS_BRANCH" == "node-red" -a "$TRAVIS_PULL_REQUEST" == "false" ]; then
     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-    docker push nodered/node-red-docker;
+    docker push bludoc/node-red;
     fi
