@@ -28,8 +28,7 @@
         "node-red-node-msgpack": "*",
         "node-red-node-base64": "*",
         "node-red-node-suncalc": "*",
-        "node-red-node-random": "*",
-		"node-red/node-red-auth-github": "*"
+        "node-red-node-random": "*"
     },
     "engines": {
         "node": "4.*.*"
