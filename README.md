@@ -7,8 +7,7 @@ get full control of the actual contents of the repository. In addition it enable
 serves the application at a different URL. The default user only has read access to the flows. All users to gain write access need to be added to
 `settings.js` as stated [here](https://github.com/node-red/node-red-auth-github).
 
-This project also provides the build for the `bludoc/node-red`
-container on [DockerHub](https://hub.docker.com/r/bludoc/node-red/).
+This project also provides the build for the `bludoc/node-red` container on [DockerHub](https://hub.docker.com/r/bludoc/node-red/).
 
 To run this directly in docker at it's simplest just run
 
@@ -33,8 +32,7 @@ Running that command should give a terminal window with a running instance of No
 
 You can then browse to `http://{host-ip}:1880/node-red` to get the familiar Node-RED desktop.
 
-The advantage of doing this is that by giving it a name we can manipulate it
-more easily, and by fixing the host port we know we are on familiar ground.
+The advantage of doing this is that by giving it a name we can manipulate it more easily, and by fixing the host port we know we are on familiar ground.
 (Of course this does mean we can only run one instance at a time... but one step at a time folks...)
 
 If we are happy with what we see we can detach the terminal with `Ctrl-p``Ctrl-q` - the container will keep running in the background.
@@ -104,7 +102,7 @@ The flows configuration file is set using an environment parameter (**FLOWS**),
 which defaults to *'flows.json'*. This can be changed at runtime using the
 following command-line flag.
 
-        $ docker run -it -p 1880:1880 -e FLOWS=my_flows.json nodered/node-red-docker
+        $ docker run -it -p 1880:1880 -e FLOWS=my_flows.json bludoc/node-red
 
 Node.js runtime arguments can be passed to the container using an environment
 parameter (**NODE_OPTIONS**). For example, to fix the heap size used by

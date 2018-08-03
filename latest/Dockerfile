@@ -22,7 +22,7 @@ RUN useradd --home-dir /usr/src/node-red --no-create-home node-red \
 USER node-red
 
 # package.json contains Node-RED NPM module and node dependencies
-COPY package.json /opt/node-red/
+COPY package.json /package.json
 
 USER root
 
