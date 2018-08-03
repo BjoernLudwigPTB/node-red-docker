@@ -32,7 +32,7 @@ WORKDIR /data
 
 # Change settings'js according to custom needs.
 
-RUN cp node_modules/node-red/settings.js .
+RUN cp /opt/node-red/node_modules/node-red/settings.js .
 
 RUN sed -i "s_//httpRoot:.*_httpRoot: '\node-red'_g" settings.js
 RUN sed -i 's_\(.*\)//adminAuth:.*_\1adminAuth: {\n \
