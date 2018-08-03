@@ -44,7 +44,7 @@ RUN sed -i 's_\(.*\)//adminAuth:.*_\1adminAuth: {\n \
         username: "ludwig10",\n \
         password: "$2a$08$zqNNBGzJXbjTan6rJq1RfOPdO8HKqpIzD7jYfh2PhEitj9p.o8otC",\n \
         permissions: "*"\n \
-    }
+    }\n \
 	],\n \
 	default: {\n \
         permissions: "read"\n \
