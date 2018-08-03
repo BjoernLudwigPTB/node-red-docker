@@ -1,5 +1,4 @@
 {
-    // The URL in this file was changed to match customization.
     "name": "node-red-docker",
     "version": "1.0.0",
     "description": "A visual tool for wiring the Internet of Things",
