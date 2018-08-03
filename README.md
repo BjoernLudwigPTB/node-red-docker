@@ -2,11 +2,10 @@
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/node-red/node-red-docker.svg)](https://greenkeeper.io/)
 
-This project is a fork of [node-red/node-red-docker](https://github.com/node-red/node-red-docker) and
-contains simply some customization and is used to get full control of the actual contents of the repository.
-In addition it enables authentication via GitHub and serves the application at a different URL. The deafult
-user only has read access to the flows. All users to gain write access need to be added to `settings.js` as
-stated [here](https://github.com/node-red/node-red-auth-github).
+This project is a fork of [node-red/node-red-docker](https://github.com/node-red/node-red-docker) and contains simply some customization and is used to 
+get full control of the actual contents of the repository. In addition it enables authentication via hard coded users prepared in `settings.js` and
+serves the application at a different URL. The default user only has read access to the flows. All users to gain write access need to be added to
+`settings.js` as stated [here](https://github.com/node-red/node-red-auth-github).
 
 This project also provides the build for the `bludoc/node-red`
 container on [DockerHub](https://hub.docker.com/r/bludoc/node-red/).
