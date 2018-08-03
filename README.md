@@ -1,11 +1,12 @@
-# Node-RED-Docker
+# Node-RED-Docker by Bjoern Ludwig
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/node-red/node-red-docker.svg)](https://greenkeeper.io/)
 
 This project is a fork of [node-red/node-red-docker](https://github.com/node-red/node-red-docker) and
 contains simply some customization and is used to get full control of the actual contents of the repository.
-It describes some of the many ways Node-RED can be run under Docker. Some basic familiarity with Docker and the
-[Docker Command Line](https://docs.docker.com/engine/reference/commandline/cli/) is assumed.
+In addition it enables authentication via GitHub and serves the application at a different URL. The deafult
+user only has read access to the flows. All users to gain write access need to be added to `settings.js` as
+stated [here](https://github.com/node-red/node-red-auth-github).
 
 This project also provides the build for the `bludoc/node-red`
 container on [DockerHub](https://hub.docker.com/r/bludoc/node-red/).
@@ -20,18 +21,18 @@ Let's dissect that command...
         -it             - attach a terminal session so we can see what is going on
         -p 1880:1880    - connect local port 1880 to the exposed internal port 1880
         --name mynodered - give this machine a friendly local name
-        bludoc/node-red - the image to base it on - currently Node-RED v0.14.5
+        bludoc/node-red - the image to base it on - currently Node-RED v0.18.7
 
 
 Running that command should give a terminal window with a running instance of Node-RED
 
         Welcome to Node-RED
         ===================
-        8 Apr 12:13:44 - [info] Node-RED version: v0.14.5
-        8 Apr 12:13:44 - [info] Node.js  version: v4.4.7
+        8 Apr 12:13:44 - [info] Node-RED version: v0.18.7
+        8 Apr 12:13:44 - [info] Node.js  version: v6.14.3
         .... etc
 
-You can then browse to `http://{host-ip}:1880` to get the familiar Node-RED desktop.
+You can then browse to `http://{host-ip}:1880/node-red` to get the familiar Node-RED desktop.
 
 The advantage of doing this is that by giving it a name we can manipulate it
 more easily, and by fixing the host port we know we are on familiar ground.
@@ -82,7 +83,7 @@ Docker build process, the dependencies are installed under `/opt/node-red`.
 The main sections to modify are
 
     "dependencies": {
-        "node-red": "0.14.x",           <-- set the version of Node-RED here
+        "node-red": "0.18.x",           <-- set the version of Node-RED here
         "node-red-node-rbe": "*"        <-- add any extra npm packages here
     },
 
