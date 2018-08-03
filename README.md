@@ -2,17 +2,17 @@
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/node-red/node-red-docker.svg)](https://greenkeeper.io/)
 
-This project describes some of the many ways Node-RED can be run under Docker.
-Some basic familiarity with Docker and the
-[Docker Command Line](https://docs.docker.com/engine/reference/commandline/cli/)
-is assumed.
+This project is a fork of [node-red/node-red-docker](https://github.com/node-red/node-red-docker) and
+contains simply some customization and is used to get full control of the actual contents of the repository.
+It describes some of the many ways Node-RED can be run under Docker. Some basic familiarity with Docker and the
+[Docker Command Line](https://docs.docker.com/engine/reference/commandline/cli/) is assumed.
 
-This project also provides the build for the `nodered/node-red-docker`
-container on [DockerHub](https://hub.docker.com/r/nodered/node-red-docker/).
+This project also provides the build for the `bludoc/node-red`
+container on [DockerHub](https://hub.docker.com/r/bludoc/node-red/).
 
 To run this directly in docker at it's simplest just run
 
-        docker run -it -p 1880:1880 --name mynodered nodered/node-red-docker
+        docker run -it -p 1880:1880 --name mynodered bludoc/node-red
 
 Let's dissect that command...
 
@@ -20,7 +20,7 @@ Let's dissect that command...
         -it             - attach a terminal session so we can see what is going on
         -p 1880:1880    - connect local port 1880 to the exposed internal port 1880
         --name mynodered - give this machine a friendly local name
-        nodered/node-red-docker - the image to base it on - currently Node-RED v0.14.5
+        bludoc/node-red - the image to base it on - currently Node-RED v0.14.5
 
 
 Running that command should give a terminal window with a running instance of Node-RED
@@ -57,41 +57,27 @@ container without permanently losing all of your customisations._
 
 ## Images
 
-The following images are built for each Node-RED release, using a Node.js v6 base image.
+The following images are built within this fork for each Node-RED release, using a Node.js v6 base image.
 
 - **latest** - uses [official Node.JS v6 base image](https://hub.docker.com/_/node/).
-- **slim** uses [Alpine Linux base image](https://hub.docker.com/r/mhart/alpine-node/).
-- **rpi** uses [RPi-compatible base image](https://hub.docker.com/r/hypriot/rpi-node/).
 
-Using Alpine Linux reduces the built image size (~100MB vs ~700MB) but removes
-standard dependencies that are required for native module compilation. If you
-want to add modules with native dependencies, use the standard image or extend
-the slim image with the missing packages.
-
-Additional images using a newer Node.js v8 base image are now available with the following tags.
-
-- **v8** 
-- **slim-v8**
-- **rpi-v8**
-
-Node-RED releases are also tagged with a version label, allowing you to fix on a specific version: `latest:X.Y.Z`, 
-`slim:X.Y.Z`, `rpi:X.Y.Z`.
+Node-RED releases are also tagged with a version label, allowing you to fix on a specific version: `latest:X.Y.Z`.
 
 You can see a full list of the tagged releases [here](https://hub.docker.com/r/nodered/node-red-docker/tags/).
 
 ## Project Layout
 
-This repository contains Dockerfiles to build the Node-RED Docker images listed above.
+This repository contains a customized Dockerfile to build the Node-RED Docker image named above.
 
-Build these images with the following command...
+Build the image with the following command...
 
-        $ docker build -f <version>/Dockerfile -t mynodered:<version> .
+        $ docker build -f latest/Dockerfile -t mynodered:<version> .
 
 ### package.json
 
 The package.json is a metafile that downloads and installs the required version
 of Node-RED and any other npms you wish to install at build time. During the
-Docker build process, the dependencies are installed under `/usr/src/node-red`.
+Docker build process, the dependencies are installed under `/opt/node-red`.
 
 The main sections to modify are
 
@@ -111,7 +97,7 @@ This is the command that starts Node-RED when the container is run.
 
 ### startup
 
-Node-RED is started using NPM start from this `/usr/src/node-red`, with the `--userDir`
+Node-RED is started using NPM start from this `/opt/node-red`, with the `--userDir`
 parameter pointing to the `/data` directory on the container. 
 
 The flows configuration file is set using an environment parameter (**FLOWS**),
@@ -172,7 +158,7 @@ This command mounts the host's node-red directory, containing the user's
 configuration and installed nodes, as the user configuration directory inside
 the container. 
 
-        $ docker run -it -p 1880:1880 -v ~/.node-red:/data --name mynodered nodered/node-red-docker
+        $ docker run -it -p 1880:1880 -v ~/.node-red:/data --name mynodered bludoc/node-red
 
 _**Having file permissions issues after mounting a host directory?**_
 _Docker maps the internal container uuid to 1000 on the host system. If you are running as a user with a different uuid, e.g. the second user added on a system, the container user account won't be able to read files on the host system. Fix this by using the `--run $USER` flag. See [here for more details](https://github.com/node-red/node-red-docker/issues/9)._
@@ -194,14 +180,14 @@ project's package.json and re-build._
 
 ### Building Custom Image
 
-Creating a new Docker image, using the public Node-RED images as the base image,
+Creating a new Docker image, using this public Node-RED image as the base image,
 allows you to install extra nodes during the build process.
 
 This Dockerfile builds a custom Node-RED image with the flightaware module
 installed from NPM.
 
 ```
-FROM nodered/node-red-docker
+FROM bludoc/node-red
 RUN npm install node-red-contrib-flightaware
 ```
 
@@ -245,25 +231,25 @@ configuration data can be saved outside of the container and even shared between
 container instances.
 
 Let's create a new named data volume to persist our user data and run a new
-container using this volume. 
+container using this volume.
 
         $ docker volume create --name node_red_user_data
         $ docker volume ls
         DRIVER              VOLUME NAME
         local               node_red_user_data
-        $ docker run -it -p 1880:1880 -v node_red_user_data:/data --name mynodered nodered/node-red-docker
+        $ docker run -it -p 1880:1880 -v node_red_user_data:/data --name mynodered bludoc/node-red
 
 Using Node-RED to create and deploy some sample flows, we can now destroy the
 container and start a new instance without losing our user data.
 
         $ docker rm mynodered
-        $ docker run -it -p 1880:1880 -v node_red_user_data:/data --name mynodered nodered/node-red-docker
+        $ docker run -it -p 1880:1880 -v node_red_user_data:/data --name mynodered bludoc/node-red
 
 ## Updating
 
 Updating the base container image is as simple as
 
-        $ docker pull nodered/node-red-docker
+        $ docker pull bludoc/node-red
         $ docker stop mynodered
         $ docker start mynodered
 
@@ -271,14 +257,14 @@ Updating the base container image is as simple as
 
 The barest minimum we need to just run Node-RED is
 
-    $ docker run -d -p 1880 nodered/node-red-docker
+    $ docker run -d -p 1880 bludoc/node-red
 
 This will create a local running instance of a machine - that will have some
 docker id number and be running on a random port... to find out run
 
     $ docker ps -a
     CONTAINER ID        IMAGE                       COMMAND             CREATED             STATUS                     PORTS                     NAMES
-    4bbeb39dc8dc        nodered/node-red-docker:latest   "npm start"         4 seconds ago       Up 4 seconds               0.0.0.0:49154->1880/tcp   furious_yalow
+    4bbeb39dc8dc        bludoc/node-red:latest   "npm start"         4 seconds ago       Up 4 seconds               0.0.0.0:49154->1880/tcp   furious_yalow
     $
 
 You can now point a browser to the host machine on the tcp port reported back, so in the example
@@ -290,13 +276,13 @@ You can link containers "internally" within the docker runtime by using the --li
 
 For example I have a simple MQTT broker container available as
 
-        docker run -it --name mybroker nodered/node-red-docker
+        docker run -it --name mybroker bludoc/node-red
 
 (no need to expose the port 1883 globally unless you want to... as we do magic below)
 
 Then run nodered docker - but this time with a link parameter (name:alias)
 
-        docker run -it -p 1880:1880 --name mynodered --link mybroker:broker nodered/node-red-docker
+        docker run -it -p 1880:1880 --name mynodered --link mybroker:broker bludoc/node-red
 
 the magic here being the `--link` that inserts a entry into the node-red instance
 hosts file called *broker* that links to the mybroker instance....  but we do
@@ -319,8 +305,10 @@ Here is a list of common issues users have reported with possible solutions.
 If you are seeing *permission denied* errors opening files or accessing host devices, try running the container as the root user. 
 
 ```
-docker run -it -p 1880:1880 --name mynodered --user=root nodered/node-red-docker
+docker run -it -p 1880:1880 --name mynodered --user=root bludoc/node-red
 ```
+
+although this specific error is dealed with in the custom Dockerfile, by performing the `npm install` inside the container as user `root`.
 
 References: 
 
@@ -333,7 +321,7 @@ https://github.com/node-red/node-red-docker/issues/8
 If you want to access a device from the host inside the container, e.g. serial port, use the following command-line flag to pass access through. 
 
 ```
-docker run -it -p 1880:1880 --name mynodered --device=/dev/ttyACM0 nodered/node-red-docker
+docker run -it -p 1880:1880 --name mynodered --device=/dev/ttyACM0 bludoc/node-red
 ```
 References:
 https://github.com/node-red/node-red-docker/issues/15
@@ -343,7 +331,7 @@ https://github.com/node-red/node-red-docker/issues/15
 If you want to modify the default timezone, use the TZ environment variable with the [relevant timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
 
 ```
-docker run -it -p 1880:1880 --name mynodered -e TZ="Europe/London" nodered/node-red-docker
+docker run -it -p 1880:1880 --name mynodered -e TZ="Europe/London" bludoc/node-red
 ```
 
 References:
