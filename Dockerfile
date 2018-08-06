@@ -1,7 +1,7 @@
 # This file was changed for customization purposes. Specifically settings.json
 # is customized.
 
-ARG NODE_VERSION=8
+ARG NODE_VERSION=6
 FROM node:${NODE_VERSION}
 MAINTAINER Bjoern Ludwig <bjoern.ludwig@ptb.de>
 
@@ -22,8 +22,6 @@ USER node-red
 
 # package.json contains Node-RED NPM module and node dependencies
 COPY package.json /opt/node-red/
-
-USER root
 
 RUN npm install
 
