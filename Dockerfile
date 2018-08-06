@@ -1,7 +1,7 @@
 # This file was changed for customization purposes. Specifically settings.json
 # is customized.
 
-ARG NODE_VERSION=6
+ARG NODE_VERSION=4-stretch
 FROM node:${NODE_VERSION}
 MAINTAINER Bjoern Ludwig <bjoern.ludwig@ptb.de>
 
