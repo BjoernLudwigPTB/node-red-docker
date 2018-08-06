@@ -1,14 +1,14 @@
 {
-    "name": "node-red",
+    "name": "node-red-ptb",
     "version": "1.0.0",
     "description": "A visual tool for wiring the Internet of Things",
-    "homepage": "http://nodered.org",
+    "homepage": "https://github.com/BjoernLudwigPTB/node-red-docker.git",
     "license": "Apache-2.0",
     "repository": {
         "type": "git",
         "url": "https://github.com/BjoernLudwigPTB/node-red-docker.git"
     },
-    "main": "node_modules/node-red/red/red.js",
+    "main": "node_modules/node-red/red.js",
     "scripts": {
         "start": "node $NODE_OPTIONS node_modules/node-red/red.js -v $FLOWS"
     },
