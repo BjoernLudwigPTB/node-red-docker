@@ -1,19 +1,19 @@
 # This file was changed for customization purposes. Specifically settings.json
 # is customized.
 
-ARG NODE_VERSION=4-stretch
+ARG NODE_VERSION=8
 FROM node:${NODE_VERSION}
-MAINTAINER Bjoern Ludwig <bjoern.ludwig@ptb.de>
+LABEL maintainer="Bjoern Ludwig <bjoern.ludwig@ptb.de>"
 
-# Create home directory for Node-RED application source code and data
-# directory for flows, config and nodes.
+# Home directory for Node-RED application source code.
+RUN mkdir -p /opt/node-red
 
-RUN mkdir -p /opt/node-red && mkdir /data
+# User data directory, contains flows, config and nodes.
+RUN mkdir /data
 
 WORKDIR /opt/node-red
 
-# Add user not to run application as root
-
+# Add node-red user so we aren't running as root.
 RUN useradd --home-dir /opt/node-red --no-create-home node-red \
     && chown -R node-red:node-red /data \
     && chown -R node-red:node-red /opt/node-red
@@ -22,7 +22,6 @@ USER node-red
 
 # package.json contains Node-RED NPM module and node dependencies
 COPY package.json /opt/node-red/
-
 RUN npm install
 
 WORKDIR /data
@@ -52,11 +51,13 @@ RUN sed -i 's_\(.*\)//adminAuth:.*_\1adminAuth: {\n \
 
 RUN sed -i -e '/\/\/delete this and the following seven lines/,+7d' settings.js
 
+WORKDIR /opt/node-red
+
+# User configuration directory volume
 EXPOSE 1880
 
 # Environment variable holding file path for flows configuration
 ENV FLOWS=flows.json
-
 ENV NODE_PATH=/opt/node-red/node_modules:/data/modules
 
 CMD ["npm", "start", "--", "--userDir", "/data"]
