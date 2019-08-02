@@ -35,10 +35,10 @@ jobs:
             docker run --rm --privileged multiarch/qemu-user-static:register --reset
             docker build -f latest/Dockerfile -t bludoc/node-red .
             docker build -f latest/Dockerfile -t bludoc/node-red:v10 --build-arg NODE_VERSION=10 .
-            docker tag nodered/node-red-docker bludoc/node-red:v8
-            docker tag nodered/node-red-docker bludoc/node-red:$VERSION-v8
-            docker tag nodered/node-red-docker:v10 bludoc/node-red:$VERSION-v10
-            docker tag nodered/node-red-docker bludoc/node-red:$VERSION
+            docker tag bludoc/node-red bludoc/node-red:v8
+            docker tag bludoc/node-red bludoc/node-red:$VERSION-v8
+            docker tag bludoc/node-red:v10 bludoc/node-red:$VERSION-v10
+            docker tag bludoc/node-red bludoc/node-red:$VERSION
 
       # Test images.
       - run:
