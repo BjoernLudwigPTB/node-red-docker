@@ -23,9 +23,3 @@ script:
   - docker ps | grep v10
   - docker run -d bludoc/node-red:v8
   - docker ps | grep v8
-
-after_success:
-  - if [ -n "$TRAVIS_TAG" ]; then
-    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-    docker push bludoc/node-red;
-    fi
