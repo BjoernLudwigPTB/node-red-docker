@@ -29,24 +29,25 @@ WORKDIR /data
 # Change settings'js according to custom needs.
 RUN cp /opt/node-red/node_modules/node-red/settings.js .
 
-RUN sed -i "s_//httpRoot:.*_httpRoot: '\node-red'_g" settings.js
-RUN sed -i 's_\(.*\)//adminAuth:.*_\1adminAuth: {\n \
+RUN sed -i "s_//httpRoot:.*_httpRoot: '/node-red',_g" settings.js
+
+RUN sed -i 's_//adminAuth:\(.*\)_adminAuth:\1\n \
     type: "credentials",\n \
     users: [{\n \
         username: "admin",\n \
-        password: "$2a$08$zjW7yTSNgDO1WkEkCVU05OW5/iyiagITcNmVPjZkJk7qNjTotNme2",\n \
+        password: "$2a$08$blpZsPbJPKf.QIN91R3XI.ZHRcK3kTEVzYWm9Z15qGgVCgwJW.aJu",\n \
         permissions: "*"\n \
     },\n \
 	{\n \
         username: "ludwig10",\n \
-        password: "$2a$08$zqNNBGzJXbjTan6rJq1RfOPdO8HKqpIzD7jYfh2PhEitj9p.o8otC",\n \
+        password: "$2a$08$Thwl9zz6R4tF6zjHN7Ht7O3/mlO3NZYaZC9Lk4uDVDseriJoWkFGO",\n \
         permissions: "*"\n \
     }\n \
 	],\n \
 	default: {\n \
         permissions: "read"\n \
     }\n \
-}\n \
+},\n \
 //delete this and the following seven lines_g' settings.js
 
 RUN sed -i -e '/\/\/delete this and the following seven lines/,+7d' settings.js
