@@ -16,15 +16,15 @@ Let's dissect that command...
         -it             - attach a terminal session so we can see what is going on
         -p 1880:1880    - connect local port 1880 to the exposed internal port 1880
         --name mynodered - give this machine a friendly local name
-        bludoc/node-red - the image to base it on - currently Node-RED v0.18.7
+        bludoc/node-red - the image to base it on - currently Node-RED v0.20.7
 
 
 Running that command should give a terminal window with a running instance of Node-RED
 
         Welcome to Node-RED
         ===================
-        8 Apr 12:13:44 - [info] Node-RED version: v0.18.7
-        8 Apr 12:13:44 - [info] Node.js  version: v6.14.3
+        2 Aug 12:15:19 - [info] Node-RED version: v0.20.7
+        2 Aug 12:15:19 - [info] Node.js  version: v8.16.0
         .... etc
 
 You can then browse to `http://{host-ip}:1880/node-red` to get the familiar Node-RED desktop.
@@ -82,7 +82,7 @@ Docker build process, the dependencies are installed under `/opt/node-red`.
 The main sections to modify are
 
     "dependencies": {
-        "node-red": "0.18.x",           <-- set the version of Node-RED here
+        "node-red": "0.20.x",           <-- set the version of Node-RED here
         "node-red-node-rbe": "*"        <-- add any extra npm packages here
     },
 
