@@ -9,23 +9,17 @@ before_install:
   - source version.sh
   - echo $VERSION
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
-  - docker build -f latest/Dockerfile -t nodered/node-red-docker .
-  - docker build -f latest/Dockerfile -t nodered/node-red-docker:v10 --build-arg NODE_VERSION=10 .
-  - docker tag nodered/node-red-docker nodered/node-red-docker:v8
-  - docker tag nodered/node-red-docker nodered/node-red-docker:$VERSION-v8
-  - docker tag nodered/node-red-docker:v10 nodered/node-red-docker:$VERSION-v10
-  - docker tag nodered/node-red-docker nodered/node-red-docker:$VERSION
-  - docker build -f Dockerfile -t bludoc/node-red .
-  - docker build -f Dockerfile -t bludoc/node-red:v8 --build-arg NODE_VERSION=8 .
-  - docker tag bludoc/node-red bludoc/node-red:$VERSION
-  - docker tag bludoc/node-red bludoc/node-red:v6
-  - docker tag bludoc/node-red bludoc/node-red:$VERSION-v6
-  - docker tag bludoc/node-red:v8 bludoc/node-red:$VERSION-v8
+  - docker build -f latest/Dockerfile -t bludoc/node-red .
+  - docker build -f latest/Dockerfile -t bludoc/node-red:v10 --build-arg NODE_VERSION=10 .
+  - docker tag nodered/node-red-docker bludoc/node-red:v8
+  - docker tag nodered/node-red-docker bludoc/node-red:$VERSION-v8
+  - docker tag nodered/node-red-docker:v10 bludoc/node-red:$VERSION-v10
+  - docker tag nodered/node-red-docker bludoc/node-red:$VERSION
 
 script:
   - docker run -d bludoc/node-red:latest
   - docker ps | grep latest
-  - docker run -d nodered/node-red-docker:v10
+  - docker run -d bludoc/node-red:v10
   - docker ps | grep v10
   - docker run -d bludoc/node-red:v8
   - docker ps | grep v8
@@ -33,5 +27,5 @@ script:
 after_success:
   - if [ -n "$TRAVIS_TAG" ]; then
     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-    docker push nodered/node-red-docker;
+    docker push bludoc/node-red;
     fi
