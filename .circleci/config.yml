@@ -51,7 +51,6 @@ jobs:
             docker run -d bludoc/node-red:v8
             docker ps | grep v8
 
-
       # Push image.
       - run:
           name: Push image
