@@ -1,6 +1,7 @@
-# Node-RED-Docker by Bjoern Ludwig
+# Node-RED-Docker by Björn Ludwig
 [![CircleCI](https://circleci.com/gh/BjoernLudwigPTB/node-red-docker/tree/node-red.svg?style=shield)](https://circleci.com/gh/BjoernLudwigPTB/node-red-docker/tree/node-red)
-[![Get your own version badge on microbadger.com](https://images.microbadger.com/badges/version/bludoc/node-red.svg)](https://microbadger.com/images/bludoc/node-red)
+[![Get your own version badge on microbadger.com](https://images.microbadger.com/badges/version/bludoc/node-red:latest.svg)](https://microbadger.com/images/bludoc/node-red:latest)
+[![Get your own image badge on microbadger.com](https://images.microbadger.com/badges/image/bludoc/node-red:latest.svg)](https://microbadger.com/images/bludoc/node-red:latest)
 
 This project is a fork of [node-red/node-red-docker](https://github.com/node-red/node-red-docker) and contains simply some customization and is used to get full control of the actual contents
 of the repository. In addition it enables authentication via hard coded users prepared in `settings.js` and serves the application at a different
