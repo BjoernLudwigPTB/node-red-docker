@@ -20,9 +20,9 @@ workflows:
   build_and_deploy:
     jobs:
       - build:
-          context: Docker bludoc
+          context: Docker publishing as bludoc
       - test_and_deploy:
-          context: Docker bludoc
+          context: Docker publishing as bludoc
           requires:
             - build
 
