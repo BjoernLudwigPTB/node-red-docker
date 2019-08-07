@@ -28,7 +28,9 @@
         "node-red-node-msgpack": "*",
         "node-red-node-base64": "*",
         "node-red-node-suncalc": "*",
-        "node-red-node-random": "*"
+        "node-red-node-random": "*",
+        "node-red-dashboard": "*",
+        "node-red-node-openweathermap": "*"
     },
     "engines": {
         "node": "8.*.*"
