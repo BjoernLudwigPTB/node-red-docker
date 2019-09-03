@@ -30,7 +30,9 @@
         "node-red-node-suncalc": "*",
         "node-red-node-random": "*",
         "node-red-dashboard": "*",
-        "node-red-node-openweathermap": "*"
+      "node-red-node-openweathermap": "*",
+      "unirest": "*",
+      "request ": "*"
     },
     "engines": {
         "node": "8.*.*"
