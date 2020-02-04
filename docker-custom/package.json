@@ -1,12 +1,12 @@
 {
-    "name": "node-red-ptb",
+    "name": "node-red-docker",
     "version": "1.0.3",
     "description": "Low-code programming for event-driven applications",
-    "homepage": "https://github.com/BjoernLudwigPTB/node-red-docker.git",
+    "homepage": "http://nodered.org",
     "license": "Apache-2.0",
     "repository": {
         "type": "git",
-        "url": "https://github.com/BjoernLudwigPTB/node-red-docker.git"
+        "url": "https://github.com/node-red/node-red-docker.git"
     },
     "main": "node_modules/node-red/red/red.js",
     "scripts": {
@@ -28,14 +28,6 @@
     ],
     "dependencies": {
         "node-red": "1.0.3"
-        "node-red-node-msgpack": "*",
-        "node-red-node-base64": "*",
-        "node-red-node-suncalc": "*",
-        "node-red-node-random": "*",
-        "node-red-dashboard": "*",
-        "node-red-node-openweathermap": "*",
-        "unirest": "*",
-        "request": "*"
     },
     "engines": {
         "node": ">=10"
