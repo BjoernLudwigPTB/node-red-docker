@@ -41,15 +41,8 @@ jobs:
       - run:
           name: Build image
           command: |
-            source version.sh
-            echo $VERSION
             docker run --rm --privileged multiarch/qemu-user-static:register --reset
             docker build -f latest/Dockerfile -t $DOCKER_USER/$IMAGE_NAME .
-            docker build -f latest/Dockerfile -t $DOCKER_USER/$IMAGE_NAME:v10 --build-arg NODE_VERSION=10 .
-            docker tag $DOCKER_USER/$IMAGE_NAME $DOCKER_USER/$IMAGE_NAME:v8
-            docker tag $DOCKER_USER/$IMAGE_NAME $DOCKER_USER/$IMAGE_NAME:$VERSION-v8
-            docker tag $DOCKER_USER/$IMAGE_NAME:v10 $DOCKER_USER/$IMAGE_NAME:$VERSION-v10
-            docker tag $DOCKER_USER/$IMAGE_NAME $DOCKER_USER/$IMAGE_NAME:$VERSION
 
       # Save the image.
       - run:
