@@ -77,10 +77,6 @@ jobs:
           command: |
             docker run -d $DOCKER_USER/$IMAGE_NAME:latest
             docker ps | grep latest
-            docker run -d $DOCKER_USER/$IMAGE_NAME:v10
-            docker ps | grep v10
-            docker run -d $DOCKER_USER/$IMAGE_NAME:v8
-            docker ps | grep v8
 
       # Push image.
       - run:
