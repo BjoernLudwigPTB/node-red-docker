@@ -35,7 +35,9 @@
         "node-red-dashboard": "*",
         "node-red-node-openweathermap": "*",
         "unirest": "*",
-        "request": "*"
+        "request": "*",
+        "node-red-mongodb": "*",
+        "node-red-contrib-mongodb2": "*"
     },
     "engines": {
         "node": ">=10"
