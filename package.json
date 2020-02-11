@@ -38,7 +38,8 @@
         "request": "*",
         "node-red-mongodb": "*",
         "node-red-contrib-mongodb2": "*",
-        "node-red-node-twitter": "*"
+        "node-red-node-twitter": "*",
+        "node-red-node-email": "*"
     },
     "engines": {
         "node": ">=10"
