@@ -37,7 +37,8 @@
         "unirest": "*",
         "request": "*",
         "node-red-mongodb": "*",
-        "node-red-contrib-mongodb2": "*"
+        "node-red-contrib-mongodb2": "*",
+        "node-red-node-twitter": "*"
     },
     "engines": {
         "node": ">=10"
