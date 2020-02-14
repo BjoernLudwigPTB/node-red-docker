@@ -40,7 +40,8 @@
         "node-red-contrib-mongodb2": "*",
         "node-red-node-twitter": "*",
         "node-red-node-email": "*",
-        "node-red-contrib-objectid": "*"
+        "node-red-contrib-objectid": "*",
+        "mongodb": "*"
     },
     "engines": {
         "node": ">=10"
