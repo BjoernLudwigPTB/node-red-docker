@@ -41,7 +41,9 @@
         "node-red-node-twitter": "*",
         "node-red-node-email": "*",
         "node-red-contrib-objectid": "*",
-        "mongodb": "*"
+        "mongodb": "*",
+        "xmlhttprequest": "*",
+        "jquery": "*"
     },
     "engines": {
         "node": ">=10"
