@@ -43,7 +43,8 @@
         "node-red-contrib-objectid": "*",
         "mongodb": "*",
         "xmlhttprequest": "*",
-        "jquery": "*"
+        "jquery": "*",
+        "node-red-contrib-uibuilder": "*"
     },
     "engines": {
         "node": ">=10"
