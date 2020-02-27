@@ -1,0 +1,98 @@
+version: '3.7'
+
+# This file was created with the docker-compose.yml from the Wekan project as
+# template as it is so full of examples and usage documentation, which we are
+# very thankful for. The actual container configuration follows at the bottom.     
+#----------------------------------------------------------------------------------
+# ==== USAGE OF THIS docker-compose.yml ====
+# 1) For firing up the database and look at the logs instantly execute:
+#       $ docker-compose up
+#    stop the print out and leave the log mode with Ctrl-C, which will also
+#    stop the container.
+# 2) Restart once stopped container:
+#      $ docker-compose start
+# 3) To fire up container without looking at the logs execute:
+#      $ docker-compose up -d
+# 4) Inspect running container:
+#      $ docker-compose ps
+# 5) Stop Docker containers without loosing persistent or temporary data:
+#      $ docker-compose stop
+# 6) Stop and remove Docker containers without loosing persistent data bot with 
+#    loosing temporary data:
+#      $ docker-compose down
+# ----------------------------------------------------------------------------------
+# ===== INSIDE DOCKER CONTAINERS, AND BACKUP/RESTORE ====
+# 1) Going into MongoDB container:
+#      $ docker-compose exec  mongo bash
+# 2) Copying database to outside of container:
+#      $ docker-compose exec mongo "/bin/bash mongodump"
+#      $ dockeir run --rm --volumes-from node-red_mongo_1 -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /data/db
+# 3) Restoring database (still needs to be rewritten to node-red version):
+#      # 1) Stop wekan
+#             docker stop wekan-app
+#      # 2) Go inside database container
+#             docker exec -it wekan-db bash
+#      # 3) and data directory
+#             cd /data
+#      # 4) Remove previos dump
+#             rm -rf dump
+#      # 5) Exit db container
+#             exit
+#      # 6) Copy dump to inside docker container
+#             docker cp dump wekan-db:/data/
+#      # 7) Go inside database container
+#             docker exec -it wekan-db bash
+#      # 8) and data directory
+#             cd /data
+#      # 9) Restore
+#             mongorestore --drop
+#      # 10) Exit db container
+#             exit
+#      # 11) Start wekan
+#             docker start wekan-app
+#-------------------------------------------------------------------------
+
+services:
+
+  app:
+    image: bludoc/node-red
+    restart: always
+    ports:
+      - 1880:1880
+    volumes:
+      - type: volume
+        source: node-red
+        target: /data/
+    networks:
+      - tier
+    depends_on:
+      - db
+
+  db:
+    image: mongo:latest
+    restart: always
+    command: mongod --auth --config /etc/mongod.conf --oplogSize 128
+    expose:
+      - 27017
+    volumes:
+      - type: volume
+        source: db_data
+        target: /data/db
+      - type: volume
+        source: db_dump
+        target: /dump
+      - type: bind
+        source: ./server_mongod.conf
+        target: /etc/mongod.conf
+    networks:
+      - tier
+
+volumes:
+  db_data:
+    driver: local
+  db_dump:
+    driver: local
+
+networks:
+  tier:
+    driver: bridge
