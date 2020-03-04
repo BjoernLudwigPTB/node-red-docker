@@ -20,6 +20,27 @@ to be added to `settings.js` as stated
 This project also provides the build for the `bludoc/node-red` container on
 [DockerHub](https://hub.docker.com/r/bludoc/node-red/).
 
+## Dependencies Node Red
+
+ Node | Funktion
+  --- | ---
+  `node-red-node-msgpack`         | A Node-RED node to pack and unpack objects to msgpack format buffers.
+  `node-red-node-base64`          | A Node-RED node to encode and decode base64 format messages.
+  `node-red-node-suncalc`         | A Node-RED node to provide a signal at sunrise and sunset.
+  `node-red-node-random`          | A Node-RED node that when triggered generates a random number between two values.
+  `node-red-dashboard`            | This module provides a set of nodes in Node-RED to quickly create a live data dashboard.
+  `node-red-node-openweathermap`  | A Node-RED node that gets the weather report and forecast from OpenWeatherMap.
+  `unirest`                       | Unirest is a set of lightweight HTTP libraries available in multiple languages, built and maintained by Kong, who also maintain the open-source API Gateway Kong.
+  `request`                       | Request is designed to be the simplest way possible to make http calls. It supports HTTPS and follows redirects by default. (deprecated)
+  `node-red-mongodb`              | A Node-RED node to save data in a MongoDB database.
+  `node-red-contrib-mongodb2`     | MongoDB 2 driver node for Node-RED
+  `node-red-node-twitter`         | Node-RED nodes to talk to Twitter.
+  `node-red-contrib-objectid`     | This Node-Red node is to create an Object-Id for mongodb write operations from JSON inputs.
+  `monodb`                        | MongoDB Nodejs Driver
+  `xmlhttprequest`                | node-XMLHttpRequest is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object.
+  `jquery`                        | Nodejs package
+  `node-red-contrib-uibuilder`    | A Node-RED web user interface builder. UIbuilder Aims to Provide an easy to use way to create dynamic web interfaces using any (or no) front end libraries for convenience.
+
 ## Quick Start
 
 To run in Docker in its simplest form just run:
