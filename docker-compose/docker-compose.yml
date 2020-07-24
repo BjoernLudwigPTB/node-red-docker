@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.3'
 
 # This file was created with the docker-compose.yml from the Wekan project as
 # template as it is so full of examples and usage documentation, which we are
@@ -56,6 +56,7 @@ services:
 
   app:
     image: bludoc/node-red
+    container_name: node-red
     restart: always
     ports:
       - 1880:1880
@@ -63,8 +64,12 @@ services:
       - type: volume
         source: node-red
         target: /data/
+      - type: bind
+        source: ./data_copy
+        target: /data_copy
     networks:
       - tier
+      - docker
     depends_on:
       - db
 
@@ -92,7 +97,11 @@ volumes:
     driver: local
   db_dump:
     driver: local
+  node-red:
+    driver: local
 
 networks:
   tier:
     driver: bridge
+  docker:
+    external: true

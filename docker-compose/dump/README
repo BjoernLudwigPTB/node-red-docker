@@ -1,0 +1,6 @@
+# mongodb dump migration folder
+
+This folder is mounted in the MongoDB container and can be used to transfer
+any data from inside the container to the host system. Its location
+in the containers filesystem is /dump and its purpose is to transfer a
+mongodump output to or from the host system.
