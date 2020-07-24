@@ -1,6 +1,6 @@
 {
     "name": "node-red-ptb",
-    "version": "1.0.3",
+    "version": "1.1.2",
     "description": "Low-code programming for event-driven applications",
     "homepage": "https://github.com/BjoernLudwigPTB/node-red-docker.git",
     "license": "Apache-2.0",
@@ -10,7 +10,9 @@
     },
     "main": "node_modules/node-red/red/red.js",
     "scripts": {
-        "start": "node $NODE_OPTIONS node_modules/node-red/red.js $FLOWS"
+        "start": "node $NODE_OPTIONS node_modules/node-red/red.js $FLOWS",
+        "debug": "node --inspect=0.0.0.0:9229 $NODE_OPTIONS node_modules/node-red/red.js $FLOWS",
+        "debug_brk": "node --inspect=0.0.0.0:9229 --inspect-brk $NODE_OPTIONS node_modules/node-red/red.js $FLOWS"
     },
     "contributors": [
         {
@@ -27,7 +29,7 @@
         }
     ],
     "dependencies": {
-        "node-red": "1.0.3",
+        "node-red": "1.1.2",
         "node-red-node-msgpack": "*",
         "node-red-node-base64": "*",
         "node-red-node-suncalc": "*",
