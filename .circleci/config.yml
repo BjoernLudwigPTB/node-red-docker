@@ -21,6 +21,11 @@ workflows:
     jobs:
       - build:
           context: Docker publishing as bludoc
+          filters:
+            branches:
+              only:
+                - latest
+                - 1.0.3
       - test_and_deploy:
           context: Docker publishing as bludoc
           requires:
@@ -42,12 +47,12 @@ jobs:
           name: Build image
           command: |
             docker run --rm --privileged multiarch/qemu-user-static:register --reset
-            docker build -f latest/Dockerfile -t $DOCKER_USER/$IMAGE_NAME .
+            docker build -f latest/Dockerfile -t $DOCKER_USER/$IMAGE_NAME:$CIRCLE_BRANCH .
 
       # Save the image.
       - run:
           name: Save Docker image
-          command: docker save -o image.tar $DOCKER_USER/$IMAGE_NAME
+          command: docker save -o image.tar $DOCKER_USER/$IMAGE_NAME:$CIRCLE_BRANCH
 
       # Permanently store the built image to test and potentially deploy it.
       - persist_to_workspace:
@@ -75,7 +80,7 @@ jobs:
       - run:
           name: Test images
           command: |
-            docker run -d $DOCKER_USER/$IMAGE_NAME:latest
+            docker run -d $DOCKER_USER/$IMAGE_NAME:$CIRCLE_BRANCH
             docker ps | grep latest
 
       # Push image.
