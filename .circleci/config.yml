@@ -81,7 +81,7 @@ jobs:
           name: Test images
           command: |
             docker run -d $DOCKER_USER/$IMAGE_NAME:$CIRCLE_BRANCH
-            docker ps | grep latest
+            docker ps | grep $CIRCLE_BRANCH
 
       # Push image.
       - run:
