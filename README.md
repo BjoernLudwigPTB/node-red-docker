@@ -20,6 +20,11 @@ to be added to `settings.js` as stated
 This project also provides the build for the `bludoc/node-red` container on
 [DockerHub](https://hub.docker.com/r/bludoc/node-red/).
 
+The provided images from the fork are tagged `latest` and `1.0.3`. We strive to keep
+`latest` as up-to-date as possible and maintain `1.0.3` for backwards compatibility
+reasons of one of our deployments. We might drop this images at any time, once we
+have updated the installation.
+
 ## Dependencies Node Red
 
  Node | Funktion
@@ -161,7 +166,9 @@ that are required for native module compilation. If you want to add dependencies
 with native dependencies, extend the Node-RED image with the missing packages on
 running containers or build new images see [docker-custom](docker-custom/README.md).
 
-The following table shows the variety of provided Node-RED images.
+The following table shows the variety of upstream provided Node-RED images. You can
+get those in the original state at the
+[upstreams's Docker Hub account](https://hub.docker.com/r/nodered/node-red).
 
 | **Tag**                    |**Node**| **Arch** | **Python** |**Dev**| **Base Image**         |
 |----------------------------|--------|----------|------------|-------|------------------------|
