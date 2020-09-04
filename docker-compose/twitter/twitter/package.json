@@ -1,0 +1,19 @@
+{
+  "name": "twitter-axios-proxy",
+  "version": "1.0.0",
+  "description": "First own package",
+  "main": "twitter-axios-proxy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "first",
+    "twitter",
+    "proxy"
+  ],
+  "node-red": {
+      "nodes":{"twitter-axios-proxy":"twitter-axios-proxy.js"}
+  },
+  "author": "Paul Kruse",
+  "license": "ISC"
+}
