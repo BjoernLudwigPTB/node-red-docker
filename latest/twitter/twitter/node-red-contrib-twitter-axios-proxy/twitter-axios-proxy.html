@@ -1,0 +1,16 @@
+<script type="text/javascript">
+RED.nodes.registerType('example', { category: 'function', color : '#a6bbff', defaults: {name : {value:""}}, 
+inputs:1, outputs:1, icon:"./icons/twitter.png", label: function(){
+    return this.name || "node-red-contrib-twitter-axios-proxy"
+}});
+</script>
+<script type="text/html" data-template-name="node-red-contrib-twitter-axios-proxy">
+    <div class = "form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name </label>
+        <input type="text" id= "node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="node-red-contrib-twitter-axios-proxy">
+    <p> currently the placeholder for more stuff to follow</p>
+</script>

@@ -45,7 +45,7 @@
         "xmlhttprequest": "*",
         "jquery": "*",
         "node-red-contrib-uibuilder": "*",
-        "twitter-axios-proxy":"file:/data/twitter"
+        "node-red-contrib-twitter-axios-proxy":"file:/node-red-contrib-twitter-axios-proxy"
     },
     "engines": {
         "node": ">=10"

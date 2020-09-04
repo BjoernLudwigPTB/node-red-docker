@@ -10,6 +10,7 @@ RUN mkdir -p /opt/node-red
 
 # User data directory, contains flows, config and nodes.
 RUN mkdir /data
+COPY twitter/twitter /node-red-contrib-twitter-axios-proxy
 
 WORKDIR /opt/node-red
 
@@ -18,11 +19,16 @@ RUN useradd --home-dir /opt/node-red --no-create-home node-red \
     && chown -R node-red:node-red /data \
     && chown -R node-red:node-red /opt/node-red
 	
-USER node-red
+#USER node-red
 
 # package.json contains Node-RED NPM module and node dependencies
 COPY package.json /opt/node-red/
 RUN npm install
+
+COPY package.json /opt/node-red/
+
+RUN npm install
+RUN npm install /node-red-contrib-twitter-axios-proxy
 
 WORKDIR /data
 
