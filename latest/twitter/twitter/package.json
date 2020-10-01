@@ -2,9 +2,14 @@
   "name": "node-red-contrib-twitter-axios-proxy",
   "version": "1.0.0",
   "description": "First own package",
-  "main": "twitter-axios-proxy.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+ 
+  "node-red": {
+      "nodes":{
+        "twitter-axios-proxy":"twitter-axios-proxy.js"
+      }
   },
   "keywords": [
     "node-red",
@@ -12,9 +17,6 @@
     "twitter",
     "proxy"
   ],
-  "node-red": {
-      "nodes":{"twitter-axios-proxy":"node-red-contrib-twitter-axios-proxy/twitter-axios-proxy.js"}
-  },
   "author": "Paul Kruse",
-  "license": "ISC"
+  "license": "Apache-2.0"
 }

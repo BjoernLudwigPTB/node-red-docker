@@ -1,0 +1,42 @@
+<script type="text/javascript">
+    RED.nodes.registerType('twitter-search-node', {
+        category: 'PTB',
+        color: '#009CD1',
+        defaults : {
+            name: { value :""},
+            frequency: { value: "10"},
+            keywords: {value: "metrology"},
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        credentials: {
+            consumer_key: { type: "password"},
+            consumer_secret: { type: "password" },
+            access_token: {type: "password"},
+            access_token_secret: {type:"password"}
+        },
+        label: function() {return this.name || "twitter-search-node";}
+    });
+    </script>
+
+
+    <script type="text/html" data-template-name="twitter-search-node">
+        <div class="form-row">
+            <label for="node-input-keywords"><i class="fa fa-tag"></i> Look for tweets with:</label>
+            <input type="text" id ="node-input-keywords" >
+        </div>
+       <div class="form-row">
+           <label for ="node-input-frequency">Frequency to Request new tweets</label>
+           <select id="node-input-frequency">
+               <option value=1>1 Minute</option>
+               <option value=3>3 Minutes</option>
+               <option value=10>10 Minutes</option>
+
+           </select>
+    </script>
+    
+    
+    <script type="text/html" data-help-name="twitter-search-node">
+    <p>A simple node that converts the message payloads into all lower-case characters</p>
+    </script>

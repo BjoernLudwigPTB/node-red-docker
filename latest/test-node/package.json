@@ -1,0 +1,28 @@
+{
+  "name": "test-node",
+  "version": "1.0.0",
+  "description": "Used to test node red",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "twitter-ng":"*",
+    "unirest":"*",
+    "bluebird":"*",
+    "tweetbot":"file:/twitter-bot"
+  },
+  "node-red" :{
+    "nodes":{
+    "test-node":"test-node.js",
+    "credential-node":"credential-node.js",
+    "twitter-search-node":"twitter-search-node.js"
+  
+    }
+  },
+  "keywords": [
+    "node-red",
+    "test-node"
+  ],
+  "author": "Paul Kruse",
+  "license": "Apache-2.0"
+}

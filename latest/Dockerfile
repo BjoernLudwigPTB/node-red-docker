@@ -11,6 +11,8 @@ RUN mkdir -p /opt/node-red
 # User data directory, contains flows, config and nodes.
 RUN mkdir /data
 COPY twitter/twitter /node-red-contrib-twitter-axios-proxy
+COPY test-node /test-node
+COPY twitter-bot /twitter-bot
 
 WORKDIR /opt/node-red
 
@@ -23,12 +25,10 @@ RUN useradd --home-dir /opt/node-red --no-create-home node-red \
 
 # package.json contains Node-RED NPM module and node dependencies
 COPY package.json /opt/node-red/
-RUN npm install
 
-COPY package.json /opt/node-red/
-
-RUN npm install
-RUN npm install /node-red-contrib-twitter-axios-proxy
+RUN  npm install\
+    && npm install /test-node \
+    && npm install /twitter-bot
 
 WORKDIR /data
 
@@ -64,7 +64,7 @@ WORKDIR /opt/node-red
 EXPOSE 1880
 
 # Environment variable holding file path for flows configuration
-ENV FLOWS=flows.json
-ENV NODE_PATH=/opt/node-red/node_modules:/data/modules
+ENV FLOWS=flows.json \
+    NODE_PATH=/opt/node-red/node_modules:/data/modules
 
 CMD ["npm", "start", "--", "--userDir", "/data"]
