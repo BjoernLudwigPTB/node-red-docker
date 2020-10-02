@@ -27,4 +27,4 @@ function getTweetsForTopic(topic)
         }
         
     })
-}
+}gi
