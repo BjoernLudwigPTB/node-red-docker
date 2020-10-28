@@ -10,9 +10,9 @@ RUN mkdir -p /opt/node-red
 
 # User data directory, contains flows, config and nodes.
 RUN mkdir /data
-COPY twitter/twitter /node-red-contrib-twitter-axios-proxy
-COPY test-node /test-node
-COPY twitter-bot /twitter-bot
+COPY latest/twitter/twitter /node-red-contrib-twitter-axios-proxy
+COPY latest/test-node /test-node
+COPY latest/twitter-bot /twitter-bot
 
 WORKDIR /opt/node-red
 
