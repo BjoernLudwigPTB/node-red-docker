@@ -26,6 +26,7 @@ workflows:
               only:
                 - latest
                 - 1.0.3
+                - twitter
       - test_and_deploy:
           context: Docker publishing as bludoc
           requires:
